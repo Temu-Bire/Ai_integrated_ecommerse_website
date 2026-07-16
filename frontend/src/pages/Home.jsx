@@ -61,19 +61,16 @@ export default function Home() {
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-cyan-500/10 blur-3xl rounded-full pointer-events-none"></div>
 
         <div className="relative max-w-4xl mx-auto px-6 text-center">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-6">
-            <Sparkles className="w-3.5 h-3.5 animate-pulse" /> Next-Gen AI Integrated Gear
-          </span>
-          
+      
           <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white mb-6 leading-tight">
-            Electronics That Think. <br />
+            Your Trusted Store for <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-              Hardware Powered by AI.
+              Quality Electronics.
             </span>
           </h1>
           
           <p className="text-slate-400 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-            Discover consumer devices embedded with local neural processors designed to actively adapt to your lifestyle.
+            Explore a wide range of electronics including laptops, smartphones, accessories, home appliances, and more at competitive prices.
           </p>
 
           {/* Clean Search Input */}
@@ -83,7 +80,7 @@ export default function Home() {
             </div>
             <input
               type="text"
-              placeholder="Search smart devices..."
+              placeholder="Search electronics..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-12 pr-4 py-3.5 bg-slate-900 border border-slate-800 rounded-lg text-slate-100 placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all text-sm"
@@ -92,32 +89,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- AI SETUP RECOMMENDER BANNER --- */}
-      <section className="max-w-7xl mx-auto px-6 py-12">
-        <div className="p-6 md:p-8 rounded-2xl bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-cyan-500/20 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-start gap-4">
-            <div className="p-3 bg-cyan-950 border border-cyan-500/30 rounded-xl text-cyan-400 shrink-0">
-              <Sparkles className="w-6 h-6 animate-pulse" />
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-white">Let our local AI construct your ecosystem</h3>
-              <p className="text-slate-400 text-sm mt-1 max-w-md">
-                Answer three simple questions to curate the perfect layout for your workspace.
-              </p>
-            </div>
-          </div>
-          <Button variant="primary" className="flex items-center gap-2">
-            Start AI Advisor <ArrowRight className="w-4 h-4" />
-          </Button>
-        </div>
-      </section>
-
       {/* --- FEATURED PRODUCTS SECTION --- */}
       <section className="max-w-7xl mx-auto px-6 py-12">
         <div className="flex items-end justify-between mb-10">
           <div>
             <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">Our Core Collection</h2>
-            <p className="text-slate-500 text-sm mt-1">Smart hardware embedded with local neural engines.</p>
+            <p className="text-slate-500 text-sm mt-1">  Discover our latest electronics and top-selling products.</p>
           </div>
         </div>
 
@@ -130,7 +107,7 @@ export default function Home() {
           </div>
         ) : (
           <div className="text-center py-12 text-slate-500">
-            No smart hardware found matching your criteria.
+            No products found matching your search.
           </div>
         )}
       </section>

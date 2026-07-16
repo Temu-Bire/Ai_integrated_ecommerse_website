@@ -13,7 +13,8 @@ import Cart from '../pages/Cart';
 import Orders from '../pages/Orders';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
-
+import Contact from '../pages/Contact';
+import About from '../pages/About';
 // Admin Pages
 import Dashboard from '../pages/admin/Dashboard';
 import ProductsManage from '../pages/admin/ProductsManage';
@@ -27,6 +28,8 @@ export default function AppRoutes() {
         {/* --- CLIENT / PUBLIC ROUTES --- */}
         <Route path="/" element={<MainLayout><Home /></MainLayout>} />
         <Route path="/products" element={<MainLayout><Products /></MainLayout>} />
+        <Route path="/contact" element={<MainLayout><Contact /></MainLayout>} />
+        <Route path="/about" element={<MainLayout><About /></MainLayout>} />
         <Route path="/products/:id" element={<MainLayout><ProductDetails /></MainLayout>} />
         <Route path="/cart" element={<MainLayout><Cart /></MainLayout>} />
         <Route path="/orders" element={<MainLayout><Orders /></MainLayout>} />

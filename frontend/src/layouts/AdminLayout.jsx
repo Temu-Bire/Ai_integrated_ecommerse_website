@@ -1,15 +1,18 @@
 import React from 'react';
-import { LayoutDashboard, PackageOpen, ShoppingBag, ArrowLeft, Cpu } from 'lucide-react';
+import { LayoutDashboard, PackageOpen, ShoppingBag, ArrowLeft, Cpu,Users,
+  LogOut, } from 'lucide-react';
 
 export default function AdminLayout({ children }) {
   // Simple check to match active routing path visually
   const currentPath = window.location.pathname;
 
   const menuItems = [
-    { label: "Dashboard", icon: LayoutDashboard, path: "/admin" },
-    { label: "Products", icon: PackageOpen, path: "/admin/products" },
-    { label: "Orders", icon: ShoppingBag, path: "/admin/orders" },
-  ];
+  { label: "Dashboard", icon: LayoutDashboard, path: "/admin" },
+  { label: "Products", icon: PackageOpen, path: "/admin/products" },
+  { label: "Orders", icon: ShoppingBag, path: "/admin/orders" },
+  { label: "Customers", icon: Users, path: "/admin/customers" },
+  { label: "Logout", icon: LogOut, path: "/logout" },
+];
 
   return (
     <div className="min-h-screen flex bg-slate-950 text-slate-100 font-sans">
