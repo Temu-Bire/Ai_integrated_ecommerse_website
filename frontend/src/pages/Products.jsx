@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ProductFilter from '../components/product/ProductFilter';
 import ProductList from '../components/product/ProductList';
-
+import { useNavigate } from "react-router-dom";
 const ALL_PRODUCTS = [
   {
     id: 1,
@@ -42,34 +42,87 @@ const ALL_PRODUCTS = [
 ];
 
 export default function Products() {
+ const navigate = useNavigate();
+
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // Filtering Logic
+
   const filteredProducts = ALL_PRODUCTS.filter(product => {
-    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          product.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
+
+    const matchesSearch =
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesCategory =
+      selectedCategory === "All" ||
+      product.category === selectedCategory;
+
+
     return matchesSearch && matchesCategory;
   });
 
-  return (
+
+  // Add cart function
+  const handleAddToCart = (product)=>{
+
+    const user = JSON.parse(
+      localStorage.getItem("user")
+    );
+
+
+    // not login
+    if(!user){
+      navigate("/login");
+      return;
+    }
+
+
+    // get old cart
+    const cart =
+      JSON.parse(localStorage.getItem("cart")) || [];
+
+
+    cart.push(product);
+
+
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(cart)
+    );
+
+
+    navigate("/cart");
+
+  };
+
+   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
+
       <div className="mb-8">
-        <h1 className="text-3xl font-black tracking-tight text-white">Neural Hardware Catalog</h1>
-        <p className="text-slate-500 text-sm mt-1">Explore consumer electronics integrated with local neural processing units.</p>
+        <h1 className="text-3xl font-black text-white">
+          Neural Hardware Catalog
+        </h1>
+
+        <p className="text-slate-500 text-sm mt-1">
+          Explore consumer electronics integrated with local neural processing units.
+        </p>
       </div>
 
-      {/* Filter Component */}
-      <ProductFilter 
-        searchQuery={searchQuery} 
-        setSearchQuery={setSearchQuery} 
-        selectedCategory={selectedCategory} 
-        setSelectedCategory={setSelectedCategory} 
+
+      <ProductFilter
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
       />
 
-      {/* Product Grid List */}
-      <ProductList products={filteredProducts} />
+
+      <ProductList
+        products={filteredProducts}
+        onAddToCart={handleAddToCart}
+      />
+
     </div>
   );
 }
