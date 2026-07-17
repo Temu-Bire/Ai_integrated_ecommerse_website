@@ -37,7 +37,7 @@ export default function AppRoutes() {
         <Route path="/register" element={<MainLayout><Register /></MainLayout>} />
 
         {/* --- ADMIN ROUTES --- */}
-        <Route path="/admin" element={<AdminLayout><Dashboard /></AdminLayout>} />
+        <Route path="/admin/Dashboard" element={<AdminLayout><Dashboard /></AdminLayout>} />
         <Route path="/admin/products" element={<AdminLayout><ProductsManage /></AdminLayout>} />
         <Route path="/admin/orders" element={<AdminLayout><OrdersManage /></AdminLayout>} />
 
