@@ -33,6 +33,7 @@ from app.modules.admin.products_router import router as admin_products_router
 from app.modules.cart.router import router as cart_router
 from app.modules.orders.router import checkout_router, orders_router
 from app.modules.payments.router import router as payments_router
+from app.modules.ai.router import router as assistant_router, rec_router, admin_ai_router
 
 
 @asynccontextmanager
@@ -117,6 +118,9 @@ app.include_router(cart_router, prefix=api_prefix)
 app.include_router(checkout_router, prefix=api_prefix)
 app.include_router(orders_router, prefix=api_prefix)
 app.include_router(payments_router, prefix=api_prefix)
+app.include_router(assistant_router, prefix=api_prefix)
+app.include_router(rec_router, prefix=api_prefix)
+app.include_router(admin_ai_router, prefix=api_prefix)
 
 
 @app.get("/", tags=["Root"])
