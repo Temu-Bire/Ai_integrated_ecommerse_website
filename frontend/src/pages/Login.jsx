@@ -1,159 +1,132 @@
-import React, { useState } from "react";
-import { Cpu } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
-import mockUsers from "../data/mockUsers"; // Import mock users
+import React, { useState } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Sparkles, Lock, Mail, ArrowRight } from 'lucide-react';
+import toast from 'react-hot-toast';
+import { useAuth } from '../context/AuthContext';
 
 export default function Login() {
+  const { login } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const redirect = searchParams.get('redirect') || '/';
 
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const [error, setError] = useState("");
-
-  // Handle input changes
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const user = await login(email, password);
+      toast.success(`Welcome back, ${user.full_name}!`);
+      if (user.role_name === 'admin' && redirect === '/') {
+        navigate('/admin/Dashboard');
+      } else {
+        navigate(redirect);
+      }
+    } catch (err) {
+      toast.error(err.message || 'Invalid email or password');
+    } finally {
+      setLoading(false);
+    }
   };
 
-  // Handle login
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    setError("");
-
-    // Find matching user
-    const user = mockUsers.find(
-      (user) =>
-        user.email === formData.email &&
-        user.password === formData.password
-    );
-
-    if (!user) {
-      setError("Invalid email or password.");
-      return;
-    }
-
-    // Save logged in user
-    localStorage.setItem("user", JSON.stringify(user));
-
-    // Redirect based on role
-    if (user.role === "admin") {
-      navigate("/admin/dashboard");
+  const handleDemoFill = (type) => {
+    if (type === 'admin') {
+      setEmail('admin@novamart.com');
+      setPassword('Admin@123456!');
     } else {
-      navigate("/user/home");
+      setEmail('customer@novamart.com');
+      setPassword('Customer@123456!');
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-950 px-6">
-      <div className="w-full max-w-sm bg-slate-900 border border-slate-800 rounded-2xl p-8">
-
+    <div className="bg-slate-950 text-slate-100 min-h-screen py-16 flex items-center justify-center px-4">
+      <div className="w-full max-w-md bg-slate-900/80 border border-slate-800 rounded-3xl p-8 shadow-2xl">
+        
         {/* Header */}
-        <div className="flex flex-col items-center mb-8">
-          <div className="w-12 h-12 bg-cyan-950 border border-cyan-500/30 rounded-xl flex items-center justify-center text-cyan-400">
-            <Cpu className="w-6 h-6 animate-pulse" />
+        <div className="text-center mb-8">
+          <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mx-auto mb-3">
+            <Sparkles className="w-6 h-6" />
           </div>
-
-          <h2 className="text-xl font-black text-white mt-4">
-            Welcome Back
-          </h2>
-
-          <p className="text-slate-500 text-sm mt-2 text-center">
-            Sign in to your account.
-          </p>
+          <h1 className="text-2xl font-extrabold text-white">Sign in to NovaMart</h1>
+          <p className="text-xs text-slate-400 mt-1">Access your persistent orders and AI shopping assistant</p>
         </div>
 
-        {/* Error Message */}
-        {error && (
-          <div className="mb-4 rounded-lg border border-red-500 bg-red-500/10 p-3 text-sm text-red-400">
-            {error}
+        {/* Demo Fast Fill Buttons */}
+        <div className="mb-6 p-3 bg-slate-950/80 border border-slate-800 rounded-xl space-y-2">
+          <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider text-center">
+            Quick Fill Demo Accounts:
+          </p>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => handleDemoFill('customer')}
+              className="flex-1 py-1.5 px-3 bg-slate-900 hover:bg-slate-800 rounded-lg text-xs text-cyan-400 font-medium transition-colors"
+            >
+              Demo Customer
+            </button>
+            <button
+              type="button"
+              onClick={() => handleDemoFill('admin')}
+              className="flex-1 py-1.5 px-3 bg-slate-900 hover:bg-slate-800 rounded-lg text-xs text-amber-400 font-medium transition-colors"
+            >
+              Demo Admin
+            </button>
           </div>
-        )}
+        </div>
 
-        {/* Login Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
-
-          {/* Email */}
           <div>
-            <label className="block text-xs font-semibold uppercase text-slate-400 mb-2">
-              Email Address
-            </label>
-
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none"
-            />
+            <label className="block text-xs font-semibold text-slate-300 mb-1.5">Email Address</label>
+            <div className="relative">
+              <Mail className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                className="w-full pl-10 pr-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500"
+              />
+            </div>
           </div>
 
-          {/* Password */}
           <div>
-            <label className="block text-xs font-semibold uppercase text-slate-400 mb-2">
-              Password
-            </label>
-
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter your password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none"
-            />
+            <div className="flex justify-between items-center mb-1.5">
+              <label className="text-xs font-semibold text-slate-300">Password</label>
+              <span className="text-[11px] text-slate-500 hover:text-cyan-400 cursor-pointer">Forgot?</span>
+            </div>
+            <div className="relative">
+              <Lock className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <input
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••••••"
+                className="w-full pl-10 pr-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500"
+              />
+            </div>
           </div>
 
-          {/* Login Button */}
           <button
             type="submit"
-            className="w-full rounded-lg bg-cyan-500 py-3 font-bold text-slate-900 transition hover:bg-cyan-400"
+            disabled={loading}
+            className="w-full mt-2 py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-cyan-500/20 flex items-center justify-center gap-2 disabled:opacity-50"
           >
-            Sign In
+            {loading ? 'Authenticating...' : 'Sign In'} <ArrowRight className="w-4 h-4" />
           </button>
-
         </form>
 
-        {/* Register Link */}
-        <p className="mt-6 text-center text-sm text-slate-400">
-          Don't have an account?{" "}
-          <Link
-            to="/register"
-            className="text-cyan-400 hover:underline"
-          >
-            Register
+        <p className="text-center text-xs text-slate-400 mt-6">
+          Don't have an account yet?{' '}
+          <Link to="/register" className="text-cyan-400 hover:text-cyan-300 font-semibold">
+            Create account
           </Link>
         </p>
-
-        {/* Demo Accounts */}
-        <div className="mt-8 border-t border-slate-800 pt-4">
-          <h3 className="mb-2 text-xs font-bold uppercase text-slate-400">
-            Demo Accounts
-          </h3>
-
-          <div className="space-y-3 text-xs text-slate-500">
-            {mockUsers.map((user) => (
-              <div key={user.id}>
-                <p>
-                  <strong className="text-cyan-400">
-                    {user.role.toUpperCase()}
-                  </strong>
-                </p>
-                <p>Email: {user.email}</p>
-                <p>Password: {user.password}</p>
-              </div>
-            ))}
-          </div>
-        </div>
 
       </div>
     </div>
