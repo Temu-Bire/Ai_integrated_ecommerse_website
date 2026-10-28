@@ -30,6 +30,7 @@ from app.modules.categories.router import router as categories_router
 from app.modules.products.router import router as products_router
 from app.modules.search.router import router as search_router
 from app.modules.admin.products_router import router as admin_products_router
+from app.modules.admin.analytics_router import router as admin_analytics_router
 from app.modules.cart.router import router as cart_router
 from app.modules.orders.router import checkout_router, orders_router
 from app.modules.payments.router import router as payments_router
@@ -114,6 +115,7 @@ app.include_router(categories_router, prefix=api_prefix)
 app.include_router(products_router, prefix=api_prefix)
 app.include_router(search_router, prefix=api_prefix)
 app.include_router(admin_products_router, prefix=api_prefix)
+app.include_router(admin_analytics_router, prefix=api_prefix)
 app.include_router(cart_router, prefix=api_prefix)
 app.include_router(checkout_router, prefix=api_prefix)
 app.include_router(orders_router, prefix=api_prefix)

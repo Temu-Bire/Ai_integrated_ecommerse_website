@@ -111,4 +111,12 @@ export const api = {
   adminDeleteProduct: (id) => request(`/admin/products/${id}`, { method: 'DELETE' }),
   adminUpdateInventory: (variantId, quantity) =>
     request(`/admin/inventory/${variantId}`, { method: 'PATCH', body: JSON.stringify({ quantity }) }),
+  adminGetAnalyticsOverview: () => request('/admin/analytics/overview'),
+  adminGetTopProducts: (limit = 5) => request(`/admin/analytics/top-products?limit=${limit}`),
+  adminGetSalesChart: () => request('/admin/analytics/sales-chart'),
+  adminGetOrders: (status) => request(`/admin/orders${status ? `?status=${status}` : ''}`),
+  adminUpdateOrderStatus: (orderId, body) =>
+    request(`/admin/orders/${orderId}/status`, { method: 'PATCH', body: JSON.stringify(body) }),
+  adminGenerateAIDescription: (body) =>
+    request('/admin/ai/generate-description', { method: 'POST', body: JSON.stringify(body) }),
 };
