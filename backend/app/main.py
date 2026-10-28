@@ -26,6 +26,10 @@ from app.core.middleware import (
 )
 from app.core.redis import redis_service
 from app.modules.auth.router import router as auth_router
+from app.modules.categories.router import router as categories_router
+from app.modules.products.router import router as products_router
+from app.modules.search.router import router as search_router
+from app.modules.admin.products_router import router as admin_products_router
 
 
 @asynccontextmanager
@@ -102,6 +106,10 @@ async def metrics_endpoint():
 # Route Registrations
 api_prefix = settings.API_V1_PREFIX
 app.include_router(auth_router, prefix=api_prefix)
+app.include_router(categories_router, prefix=api_prefix)
+app.include_router(products_router, prefix=api_prefix)
+app.include_router(search_router, prefix=api_prefix)
+app.include_router(admin_products_router, prefix=api_prefix)
 
 
 @app.get("/", tags=["Root"])
