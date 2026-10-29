@@ -101,3 +101,4 @@ async def test_ai_tools_and_sse_streaming(client: AsyncClient, db_session: Async
     data = ai_gen_res.json()
     assert "description" in data
     assert "seo_title" in data
+

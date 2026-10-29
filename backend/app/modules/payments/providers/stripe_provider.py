@@ -108,3 +108,4 @@ class StripePaymentProvider(PaymentProvider):
         except stripe.error.StripeError as e:
             logger.error(f"Stripe refund failed for {payment_intent_id}: {e}")
             return False
+

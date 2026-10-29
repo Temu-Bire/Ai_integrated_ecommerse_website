@@ -89,3 +89,4 @@ class AuditLog(Base, TimestampMixin):
     ip_address: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
     user_agent: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     details: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+

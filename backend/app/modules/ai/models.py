@@ -68,3 +68,4 @@ class AssistantMessage(Base, TimestampMixin):
     @structured_data.setter
     def structured_data(self, val: Optional[dict]) -> None:
         self.structured_data_json = json.dumps(val) if val is not None else None
+

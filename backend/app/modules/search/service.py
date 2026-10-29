@@ -142,3 +142,4 @@ class SearchService:
             val = (int(h[:4], 16) / 32768.0) - 1.0  # normalize between -1.0 and 1.0
             v.append(val)
         return v
+

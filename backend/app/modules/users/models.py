@@ -26,3 +26,4 @@ class Address(Base, TimestampMixin):
     is_default_billing: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
 
     user: Mapped["User"] = relationship("User", back_populates="addresses")  # type: ignore
+

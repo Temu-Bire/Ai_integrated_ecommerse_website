@@ -24,3 +24,4 @@ class Category(Base, TimestampMixin):
 
     children: Mapped[List["Category"]] = relationship("Category", backref="parent", remote_side=[id])
     products: Mapped[List["Product"]] = relationship("Product", back_populates="category")  # type: ignore
+

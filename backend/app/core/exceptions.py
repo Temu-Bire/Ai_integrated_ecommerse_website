@@ -130,3 +130,4 @@ async def http_exception_handler(request: Request, exc: StarletteHTTPException) 
             "details": {},
         },
     )
+

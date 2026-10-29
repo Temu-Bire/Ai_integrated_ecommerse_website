@@ -184,3 +184,4 @@ async def test_cart_and_checkout_flow(client: AsyncClient, db_session: AsyncSess
     )
     assert wh_dup.status_code == 200
     assert wh_dup.json()["status"] == "already_processed"
+

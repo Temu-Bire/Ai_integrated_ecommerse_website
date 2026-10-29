@@ -46,3 +46,4 @@ class CategoryRepository:
     async def delete(self, category: Category) -> None:
         await self.db.delete(category)
         await self.db.commit()
+

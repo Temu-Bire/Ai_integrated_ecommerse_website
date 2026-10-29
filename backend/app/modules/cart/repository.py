@@ -71,3 +71,4 @@ class CartRepository:
         for item in cart.items:
             await self.db.delete(item)
         await self.db.commit()
+

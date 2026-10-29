@@ -43,3 +43,4 @@ class LLMProvider(ABC):
     async def generate_embedding(self, text: str) -> List[float]:
         """Generates semantic embedding vector for text."""
         pass
+

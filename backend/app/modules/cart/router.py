@@ -104,3 +104,4 @@ async def clear_cart(
     service = CartService(db)
     await service.clear_cart(user_id=user_id, session_token=session_token)
     return None
+

@@ -109,3 +109,4 @@ async def cancel_order(
 ):
     service = OrderService(db)
     return await service.cancel_order(order_id, current_user)
+

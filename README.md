@@ -248,3 +248,4 @@ The API provides standardized health checks and Prometheus-compatible metrics:
 ## 8. License
 
 This project is licensed under the MIT License.
+

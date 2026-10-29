@@ -39,3 +39,4 @@ class CategoryResponse(CategoryBase):
 
 class CategoryTreeResponse(CategoryResponse):
     children: List["CategoryTreeResponse"] = []
+

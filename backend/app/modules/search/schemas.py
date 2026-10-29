@@ -40,3 +40,4 @@ class AutocompleteItem(BaseModel):
 class AutocompleteResponse(BaseModel):
     query: str
     suggestions: List[AutocompleteItem]
+

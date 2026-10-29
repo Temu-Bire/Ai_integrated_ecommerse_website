@@ -184,3 +184,4 @@ class ToolDispatcher:
         topic = args.get("topic", "shipping").lower()
         policy = STORE_POLICIES.get(topic) or STORE_POLICIES["shipping"]
         return {"topic": topic, "policy_summary": policy}
+

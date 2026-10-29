@@ -36,3 +36,4 @@ class CartItem(Base, TimestampMixin):
 
     cart: Mapped["Cart"] = relationship("Cart", back_populates="items")
     variant: Mapped["ProductVariant"] = relationship("ProductVariant", lazy="joined")  # type: ignore
+

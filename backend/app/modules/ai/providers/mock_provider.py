@@ -121,3 +121,4 @@ class MockLLMProvider(LLMProvider):
             val = (int(h[:4], 16) / 32768.0) - 1.0
             v.append(round(val, 4))
         return v
+

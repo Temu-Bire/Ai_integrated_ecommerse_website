@@ -50,3 +50,4 @@ class PaymentProvider(ABC):
     ) -> bool:
         """Processes partial or full refund."""
         pass
+

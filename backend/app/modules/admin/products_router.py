@@ -77,3 +77,4 @@ async def update_inventory(
 ):
     service = ProductService(db)
     return await service.update_inventory(variant_id, req)
+

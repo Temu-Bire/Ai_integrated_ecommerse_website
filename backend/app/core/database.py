@@ -104,3 +104,4 @@ async def close_db() -> None:
     """Closes database connection engine."""
     await engine.dispose()
     logger.info("Database connections closed.")
+

@@ -102,3 +102,4 @@ async def generate_description(
     return await service.generate_product_description(
         title=req.title, brand=req.brand, attributes=req.attributes
     )
+

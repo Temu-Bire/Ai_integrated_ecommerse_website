@@ -207,3 +207,4 @@ class AIService:
             "seo_title": f"{title} | {brand} Official Hardware",
             "seo_keywords": f"{title}, {brand}, {', '.join(attributes.keys())}",
         }
+

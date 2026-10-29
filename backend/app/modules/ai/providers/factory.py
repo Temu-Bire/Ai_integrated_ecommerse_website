@@ -15,3 +15,4 @@ def get_llm_provider() -> LLMProvider:
         return GeminiLLMProvider()
     # Default to Mock provider for testing and zero-cost local execution
     return MockLLMProvider()
+

@@ -49,3 +49,4 @@ class Wishlist(Base, TimestampMixin):
 
     user: Mapped["User"] = relationship("User")  # type: ignore
     product: Mapped["Product"] = relationship("Product")  # type: ignore
+

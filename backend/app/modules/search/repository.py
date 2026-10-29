@@ -190,3 +190,4 @@ class SearchRepository:
             suggestions.append((brand, "brand", None))
 
         return suggestions[:limit]
+

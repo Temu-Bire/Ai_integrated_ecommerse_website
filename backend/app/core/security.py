@@ -105,3 +105,4 @@ def decode_access_token(token: str) -> Dict[str, Any]:
     except JWTError as e:
         logger.debug(f"JWT decode error: {e}")
         raise UnauthorizedException("Invalid or expired access token")
+

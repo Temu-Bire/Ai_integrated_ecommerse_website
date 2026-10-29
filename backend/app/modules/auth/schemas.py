@@ -66,3 +66,4 @@ class MessageResponse(BaseModel):
     message: str
     code: str = "SUCCESS"
     details: Optional[dict] = None
+

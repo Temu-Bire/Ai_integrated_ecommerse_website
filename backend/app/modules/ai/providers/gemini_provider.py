@@ -79,3 +79,4 @@ class GeminiLLMProvider(LLMProvider):
 
     async def generate_embedding(self, text: str) -> List[float]:
         return await self.mock_fallback.generate_embedding(text)
+

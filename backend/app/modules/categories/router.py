@@ -36,3 +36,4 @@ async def get_category_by_slug(
     response.headers["Cache-Control"] = "public, max-age=300"
     service = CategoryService(db)
     return await service.get_by_slug(slug)
+

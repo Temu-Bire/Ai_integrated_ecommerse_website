@@ -36,3 +36,4 @@ class Payment(Base, TimestampMixin):
     @payment_method_details.setter
     def payment_method_details(self, val: dict) -> None:
         self.payment_method_details_json = json.dumps(val)
+

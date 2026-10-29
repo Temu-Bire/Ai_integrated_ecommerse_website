@@ -50,3 +50,4 @@ class ChapaPaymentProvider(PaymentProvider):
         self, payment_intent_id: str, amount_cents: Optional[int] = None
     ) -> bool:
         return True
+

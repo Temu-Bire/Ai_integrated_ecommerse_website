@@ -118,3 +118,4 @@ async def test_register_and_login_flow(client: AsyncClient):
         cookies={"refresh_token": new_refresh_token},
     )
     assert logout_res.status_code == 200
+

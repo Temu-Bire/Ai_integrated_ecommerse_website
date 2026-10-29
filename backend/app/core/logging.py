@@ -60,3 +60,4 @@ def setup_logging(debug: bool = False) -> logging.Logger:
 
 
 logger = setup_logging()
+

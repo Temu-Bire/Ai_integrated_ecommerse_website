@@ -69,3 +69,4 @@ class OrderItem(Base, TimestampMixin):
 
     order: Mapped["Order"] = relationship("Order", back_populates="items")
     variant: Mapped["ProductVariant"] = relationship("ProductVariant")  # type: ignore
+

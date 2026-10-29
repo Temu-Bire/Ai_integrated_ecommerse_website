@@ -128,3 +128,4 @@ class ProductEmbedding(Base, TimestampMixin):
     @vector.setter
     def vector(self, val: List[float]) -> None:
         self.embedding_json = json.dumps(val)
+

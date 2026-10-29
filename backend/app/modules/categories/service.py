@@ -118,3 +118,4 @@ class CategoryService:
             raise NotFoundException("Category not found")
         await self.repo.delete(cat)
         await self.invalidate_cache()
+

@@ -44,3 +44,4 @@ class CartResponse(BaseModel):
 
 class MergeCartRequest(BaseModel):
     session_token: str = Field(..., description="Guest session token to merge into user account")
+

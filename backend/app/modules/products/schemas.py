@@ -117,3 +117,4 @@ class ProductUpdateRequest(BaseModel):
 class InventoryUpdateRequest(BaseModel):
     quantity: int = Field(..., ge=0)
     low_stock_threshold: Optional[int] = Field(None, ge=0)
+

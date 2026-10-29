@@ -274,3 +274,4 @@ class ProductService:
         if identifier:
             await redis_service.delete(f"cache:product:{identifier}")
         logger.info("Product cache invalidated.")
+
